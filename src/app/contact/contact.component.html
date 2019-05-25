@@ -1,0 +1,58 @@
+<br><br>
+<div class="container card">
+  
+
+    <div class="row">
+        <div class="col-md-12 ">
+            <br>
+              <div style="text-align: center;">
+        <b><h1>Contact Me</h1></b>
+        <hr>
+  </div>
+     <br>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.name.errors }" [(ngModel)]="name"/>
+                        <div *ngIf="submitted &amp;&amp; registerForm.controls.name.errors" class="text-danger">
+                        <div *ngIf="registerForm.controls.name.errors.required">Name is required</div>
+                        <div *ngIf="registerForm.controls.name.errors.minlength">Name must be at least 3 characters</div>
+                        <div *ngIf="registerForm.controls.name.errors.maxlength">Nama Tidak Boleh lebih dari 25 huruf</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Your Email</label>
+                    <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.email.errors }" [(ngModel)]="email"/>
+                    <div *ngIf="submitted &amp;&amp; registerForm.controls.email.errors" class="text-danger">
+                        <div *ngIf="registerForm.controls.email.errors.required">Email is required</div>
+                        <div *ngIf="registerForm.controls.email.errors.email">Email must be a valid email address</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Your Message</label>
+                    <textarea formControlName="message" class="form-control" [ngClass]="{ 'is-invalid': submitted &amp;&amp; registerForm.controls.message.errors }" [(ngModel)]="message"></textarea>
+                    <div *ngIf="submitted &amp;&amp; registerForm.controls.message.errors" class="text-danger">
+                        <div *ngIf="registerForm.controls.message.errors.required">message is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                     <button type="submit" class="btn btn-info" >Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+	<br>
+        <b><h3>Your Data</h3></b>
+ 
+        <ul *ngFor="let friend of friend | filter:search;let i = index">
+          <li>Username = {{ friend.name}}</li>
+          <li>Email ={{ friend.email}}</li>
+          <li>Message ={{ friend.message }}</li>
+
+        </ul>
+
+         </div>
+    
